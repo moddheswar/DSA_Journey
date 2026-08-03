@@ -1,0 +1,28 @@
+class Solution {
+    public List<Integer> getRow(int numRows) {
+        numRows++;
+        List<List<Integer>> num = new ArrayList<>();
+        if(numRows == 0){
+            num.add(new ArrayList<>());
+            num.get(0).add(1);
+            return num.get(0);
+        }
+        if(numRows > 0){
+        num.add(Arrays.asList(new Integer[]{1}));
+        }
+        if(numRows >1){
+        num.add(Arrays.asList(new Integer[]{1,1}));
+        }
+        for(int i=3;i<=numRows+1;i++){
+            Integer[] n = new Integer[i];
+            n[0] = 1;
+            int j;
+            for(j=1;j<i- 1;j++){
+                n[j] = num.get(i - 2).get(j - 1) + num.get(i - 2).get(j);
+            }
+            n[j] = 1;
+            num.add(Arrays.asList(n));
+        }
+        return num.get(--numRows);
+    }
+}
